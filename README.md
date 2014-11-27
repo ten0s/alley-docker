@@ -74,7 +74,7 @@ $ bin/build smppload 1.3.0
 Build SUCCEEDED: /home/ten0s/projects/docker/tmp.ubc7ILh8Aw/smppload-1.3.0-centos6.x86_64.tar.gz
 </pre>
 
-* Build [smppsink](https://github.com/PowerMeMobile/smppload) on CentOS 5
+* Build [smppsink](https://github.com/PowerMeMobile/smppsink) on CentOS 5
 
 <pre>
 $ bin/build smppsink 1.0.0 centos5
