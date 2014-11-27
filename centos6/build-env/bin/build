@@ -38,19 +38,34 @@ fi
 
 make
 if [[ $? != 0 ]]; then
-    echo "Failed to build ${project} ${version}"
+    echo "Failed to make"
     exit 1
 fi
 
 cd rel/
 
-prj_name=${project}
+prj_name=$(cat meta/NAME 2>/dev/null || echo ${project})
 dir_name=${prj_name}-${version}
+
+cp -r ${prj_name}/ ${dir_name}/
+
+if [[ -d meta ]]; then
+    cp -r meta ${dir_name}/
+else
+    mkdir ${dir_name}/meta/
+fi
+
+echo ${prj_name} > ${dir_name}/meta/NAME
+echo ${version}  > ${dir_name}/meta/VERSION
+echo ${os}       > ${dir_name}/meta/RELEASE
+echo ${arch}     > ${dir_name}/meta/TARGET
+
 tar_name=${prj_name}-${version}-${os}.${arch}.tar.gz
-
-cp -r ${prj_name} ${dir_name}
-
 tar cfz ${tar_name} ${dir_name}/*
+if [[ $? != 0 ]]; then
+    echo "Failed to tar"
+    exit 1
+fi
 
 cd ../..
 
