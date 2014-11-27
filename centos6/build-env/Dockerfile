@@ -5,6 +5,7 @@ MAINTAINER Dmitry Klionsky <dm.klionsky@gmail.com>
 # Install Power Alley build deps
 #
 
+RUN yum -y update
 RUN yum -y install         \
         git                \
         libuuid-devel      \
