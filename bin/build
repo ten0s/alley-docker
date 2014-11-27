@@ -1,0 +1,34 @@
+#!/bin/bash
+
+CONTAINER_OS=centos6
+
+if [[ $# < 2 ]]; then
+    echo "Usage: $(basename ${0}) PROJECT VERSION [OS=${CONTAINER_OS?}]"
+    echo "Example: $(basename ${0}) kelly 1.2.3"
+    exit 1
+fi
+
+project=${1}
+version=${2}
+container_os=${3-${CONTAINER_OS?}}
+
+tmp_dir=$(mktemp -d -p $(pwd))
+if [[ $? != 0 ]]; then
+    echo "Failed to create temp directory"
+    exit 1
+fi
+
+docker run -t -i          \
+    -e "GITHUB_USER="     \
+    -e "GITHUB_PASSWORD=" \
+    -v ${tmp_dir}:/tmp/   \
+    ten0s/${container_os}_otp16.3-1_build-env:v1 build ${project} ${version}
+
+ret=$?
+if [[ ${ret} != 0 ]]; then
+    echo "Build FAILED"
+else
+    echo "Build SUCCEEDED: $(ls ${tmp_dir}/*)"
+fi
+
+exit ${ret}

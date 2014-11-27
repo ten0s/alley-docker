@@ -1,0 +1,60 @@
+#!/bin/bash
+
+if [[ $# < 2 ]]; then
+    echo "Usage: $(basename ${0}) PROJECT VERSION [OS=${CONTAINER_OS?}]"
+    echo "Example: $(basename ${0}) kelly 1.2.3"
+    exit 1
+fi
+
+project=${1}
+version=${2}
+os=${3-${CONTAINER_OS?}}
+arch=$(uname -m)
+
+echo "Building ${project}-${version}-${os}.${arch} ..."
+
+if [[ -z ${GITHUB_USER} ]]; then
+    echo "Undefined GITHUB_USER"
+fi
+if [[ -z ${GITHUB_PASSWORD} ]]; then
+    echo "Undefined GITHUB_PASSWORD"
+fi
+
+cd /tmp/
+
+git clone https://${GITHUB_USER}:${GITHUB_PASSWORD}@github.com/PowerMeMobile/${project}
+if [[ $? != 0 ]]; then
+    echo "Failed to clone ${project}"
+    exit 1
+fi
+
+cd ${project}
+
+git checkout ${version}
+if [[ $? != 0 ]]; then
+    echo "Failed to checkout ${version}"
+    exit 1
+fi
+
+make
+if [[ $? != 0 ]]; then
+    echo "Failed to build ${project} ${version}"
+    exit 1
+fi
+
+cd rel/
+
+prj_name=${project}
+dir_name=${prj_name}-${version}
+tar_name=${prj_name}-${version}-${os}.${arch}.tar.gz
+
+cp -r ${prj_name} ${dir_name}
+
+tar cfz ${tar_name} ${dir_name}/*
+
+cd ../..
+
+mv ${project}/rel/${tar_name} .
+rm -rf ${project}
+
+exit 0
