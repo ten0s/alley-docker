@@ -1,10 +1,19 @@
 #!/bin/bash
 
-CONTAINER_OS=centos6
+self=${0}
+script_name=$(basename ${self})
+script_dir=$(dirname ${self})
+
+if [[ ! -f ${script_dir}/../etc/build.conf ]]; then
+    echo "Build config ${script_dir}/../etc/build.conf not found"
+    exit 1
+else
+    source ${script_dir}/../etc/build.conf
+fi
 
 if [[ $# < 2 ]]; then
-    echo "Usage: $(basename ${0}) PROJECT VERSION [OS=${CONTAINER_OS?}]"
-    echo "Example: $(basename ${0}) kelly 1.2.3"
+    echo "Usage: ${script_name} PROJECT VERSION [OS=${CONTAINER_OS?}]"
+    echo "Example: ${script_name} kelly 1.2.3"
     exit 1
 fi
 
@@ -18,10 +27,10 @@ if [[ $? != 0 ]]; then
     exit 1
 fi
 
-docker run -t -i          \
-    -e "GITHUB_USER="     \
-    -e "GITHUB_PASSWORD=" \
-    -v ${tmp_dir}:/tmp/   \
+docker run -t -i                            \
+    -e "GITHUB_USER=${GITHUB_USER}"         \
+    -e "GITHUB_PASSWORD=${GITHUB_PASSWORD}" \
+    -v ${tmp_dir}:/tmp/                     \
     ten0s/${container_os}_otp16.3-1_build-env:v1 build ${project} ${version}
 
 ret=$?
