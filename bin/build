@@ -6,6 +6,9 @@ script_dir=$(dirname ${self})
 
 if [[ ! -f ${script_dir}/../etc/build.conf ]]; then
     echo "Build config ${script_dir}/../etc/build.conf not found"
+    if [[ -f ${script_dir}/../etc/build.conf.template ]]; then
+        echo "Use ${script_dir}/../etc/build.conf.template as a template for ${script_dir}/../etc/build.conf"
+    fi
     exit 1
 else
     source ${script_dir}/../etc/build.conf

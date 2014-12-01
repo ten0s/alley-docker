@@ -7,7 +7,7 @@ Note: Non-root access is enabled.
 
 ## Usage
 
-* Build CentOS6 Erlang/OTP R16B03-1 image
+* Build CentOS 6 & Erlang/OTP R16B03-1 image
 
 <pre>
 $ pushd centos6/otp16.3-1/
@@ -17,7 +17,7 @@ ten0s/centos6_otp16.3-1             v1                  7f7f5970e84b        18 h
 $ popd
 </pre>
 
-* Check CentOS6 Erlang/OTP R16B03-1 image
+* Check CentOS 6 & Erlang/OTP R16B03-1 image
 
 <pre>
 $ docker run -ti ten0s/centos6_otp16.3-1:v1 bash
@@ -30,7 +30,7 @@ Eshell V5.10.4  (abort with ^G)
 exit
 </pre>
 
-* Build building environment for PowerAlley based on the image above
+* Build the building environment for PowerAlley based on the image above
 
 <pre>
 $ pushd centos6/build-env/
@@ -59,6 +59,13 @@ Example: build kelly 1.2.3
 </pre>
 
 * Project building helper utility
+
+<pre>
+$ bin/build
+Build config bin/../etc/build.conf not found
+Use bin/../etc/build.conf.template as a template for bin/../etc/build.conf
+$ cp bin/../etc/build.conf.template bin/../etc/build.conf
+</pre>
 
 <pre>
 $ bin/build
