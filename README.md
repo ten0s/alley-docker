@@ -17,7 +17,7 @@ ten0s/centos6_otp16.3-1             v1                  7f7f5970e84b        18 h
 $ popd
 </pre>
 
-* Check the CentOS6 Erlang/OTP R16B03-1 image
+* Check CentOS6 Erlang/OTP R16B03-1 image
 
 <pre>
 $ docker run -ti ten0s/centos6_otp16.3-1:v1 bash
@@ -30,7 +30,7 @@ Eshell V5.10.4  (abort with ^G)
 exit
 </pre>
 
-* Build building environment for Power Alley based on the image above
+* Build building environment for PowerAlley based on the image above
 
 <pre>
 $ pushd centos6/build-env/
@@ -40,12 +40,12 @@ ten0s/centos6_otp16.3-1_build-env   v1                  6a6cb6d22232        45 m
 $ popd
 </pre>
 
-* Check the environment image
+* Check the building environment image
 
 <pre>
 # Notice absent of command to run
 $ docker run -ti ten0s/centos6_otp16.3-1_build-env:v1
-Supported commands:
+Available commands:
 
 Usage: build PROJECT VERSION [OS=centos6]
 Example: build kelly 1.2.3
