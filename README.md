@@ -76,9 +76,9 @@ Example: build kelly 1.2.3
 * Build [smppload](https://github.com/PowerMeMobile/smppload)
 
 <pre>
-$ bin/build smppload 1.3.0
+$ bin/build smppload 2.0.0
 ...
-Build SUCCEEDED: /home/ten0s/projects/docker/tmp.ubc7ILh8Aw/smppload-1.3.0-centos6.x86_64.tar.gz
+Build SUCCEEDED: /home/ten0s/projects/docker/tmp.ubc7ILh8Aw/smppload-2.0.0-centos6.x86_64.tar.gz
 </pre>
 
 * Build [smppsink](https://github.com/PowerMeMobile/smppsink) on CentOS 5
