@@ -34,7 +34,7 @@ docker run -t -i                            \
     -e "GITHUB_USER=${GITHUB_USER}"         \
     -e "GITHUB_PASSWORD=${GITHUB_PASSWORD}" \
     -v ${tmp_dir}:/tmp/                     \
-    ten0s/${container_os}_otp16.3-1_build-env:v1 build ${project} ${version}
+    ten0s/${container_os}_otp16.3-1_build-env build ${project} ${version}
 
 ret=$?
 if [[ ${ret} != 0 ]]; then

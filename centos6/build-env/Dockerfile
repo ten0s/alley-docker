@@ -1,4 +1,4 @@
-FROM ten0s/centos6_otp16.3-1:v1
+FROM ten0s/centos6_otp16.3-1
 MAINTAINER Dmitry Klionsky <dm.klionsky@gmail.com>
 
 #

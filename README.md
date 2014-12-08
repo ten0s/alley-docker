@@ -13,14 +13,14 @@ Note: Non-root access is enabled.
 $ pushd centos6/otp16.3-1/
 $ ./docker-build
 $ docker images | grep centos6_otp16.3-1
-ten0s/centos6_otp16.3-1             v1                  7f7f5970e84b        18 hours ago        871.7 MB
+ten0s/centos6_otp16.3-1             latest                  7f7f5970e84b        18 hours ago        871.7 MB
 $ popd
 </pre>
 
 * Check CentOS 6 & Erlang/OTP R16B03-1 image
 
 <pre>
-$ docker run -ti ten0s/centos6_otp16.3-1:v1 bash
+$ docker run -ti ten0s/centos6_otp16.3-1 bash
 [root@cf5d24fecff9 /]# erl
 Erlang R16B03-1 (erts-5.10.4) [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false]
 
@@ -36,7 +36,7 @@ exit
 $ pushd centos6/build-env/
 $ ./docker-build
 $ docker images | grep centos6_otp16.3-1_build-env
-ten0s/centos6_otp16.3-1_build-env   v1                  6a6cb6d22232        45 minutes ago      1.047 GB
+ten0s/centos6_otp16.3-1_build-env   latest                  6a6cb6d22232        45 minutes ago      1.047 GB
 $ popd
 </pre>
 
@@ -44,7 +44,7 @@ $ popd
 
 <pre>
 # Notice absent of command to run
-$ docker run -ti ten0s/centos6_otp16.3-1_build-env:v1
+$ docker run -ti ten0s/centos6_otp16.3-1_build-env
 Available commands:
 
 Usage: build PROJECT VERSION [OS=centos6]
@@ -53,7 +53,7 @@ Example: build kelly 1.2.3
 </pre>
 
 <pre>
-$ docker run -ti ten0s/centos6_otp16.3-1_build-env:v1 build
+$ docker run -ti ten0s/centos6_otp16.3-1_build-env build
 Usage: build PROJECT VERSION [OS=centos6]
 Example: build kelly 1.2.3
 </pre>
