@@ -30,7 +30,7 @@ if [[ $? != 0 ]]; then
     exit 1
 fi
 
-docker run -t -i                            \
+docker run -t -i --rm                       \
     -e "GITHUB_USER=${GITHUB_USER}"         \
     -e "GITHUB_PASSWORD=${GITHUB_PASSWORD}" \
     -v ${tmp_dir}:/tmp/                     \
