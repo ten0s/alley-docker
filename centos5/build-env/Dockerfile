@@ -9,6 +9,7 @@ RUN rpm -i http://mirror.datacenter.by/pub/fedoraproject.org/epel/5/x86_64/epel-
 
 RUN yum -y update
 RUN yum -y install         \
+        bzip2-devel        \
         git                \
         libuuid-devel      \
         tokyocabinet-devel \
