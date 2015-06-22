@@ -1,17 +1,17 @@
 #!/bin/bash
 
-if [[ $# < 2 ]]; then
-    echo "Usage: $(basename ${0}) PROJECT VERSION [OS=${CONTAINER_OS?}]"
-    echo "Example: $(basename ${0}) kelly 1.2.3"
+if [[ $# < 3 ]]; then
+    echo "Usage: $(basename ${0}) PROJECT VERSION DIST"
+    echo "Example: $(basename ${0}) kelly 1.2.3 centos6"
     exit 1
 fi
 
 project=${1}
 version=${2}
-os=${3-${CONTAINER_OS?}}
+dist=${3}
 arch=$(uname -m)
 
-echo "Building ${project}-${version}-${os}.${arch} ..."
+echo "Building ${project}-${version}-${dist}.${arch} ..."
 
 if [[ -z ${GITHUB_USER} ]]; then
     echo "Undefined GITHUB_USER"
@@ -57,10 +57,10 @@ fi
 
 echo ${prj_name} > ${dir_name}/meta/NAME
 echo ${version}  > ${dir_name}/meta/VERSION
-echo ${os}       > ${dir_name}/meta/RELEASE
+echo ${dist}     > ${dir_name}/meta/RELEASE
 echo ${arch}     > ${dir_name}/meta/TARGET
 
-tar_name=${prj_name}-${version}-${os}.${arch}.tar.gz
+tar_name=${prj_name}-${version}-${dist}.${arch}.tar.gz
 tar cfz ${tar_name} ${dir_name}/*
 if [[ $? != 0 ]]; then
     echo "Failed to tar"
