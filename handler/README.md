@@ -4,7 +4,7 @@ In order to make the below steps to work you need to have [Python 3.x](http://li
 installed.
 
 
-## Usate
+## Usage
 
 * Install virtualenv:
 
@@ -29,7 +29,7 @@ $ python handler.py
 
 ## NOTE
 By default this github hook's handler running at *:4321.
-You can change this behaviour simply by editing the last string of code in main file:
+You can change this behaviour simply by editing the last string of the code in main file:
 
 <pre>
 $ tail -n 1 handler.py 
