@@ -18,10 +18,10 @@ RUN yum -y install     \
         gcc-c++        \
         glibc-devel    \
         make           \
-        unixODBC-devel \
         ncurses-devel  \
         openssl-devel  \
-        tar
+        tar            \
+        unixODBC-devel
 RUN yum clean all
 
 WORKDIR /tmp/
