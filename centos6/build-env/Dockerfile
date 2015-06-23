@@ -7,8 +7,8 @@ MAINTAINER Dmitry Klionsky <dm.klionsky@gmail.com>
 
 RUN yum -y update
 RUN yum -y install         \
-        bzip2-devel        \
         git                \
+        bzip2-devel        \
         libuuid-devel      \
         tokyocabinet-devel \
 RUN yum clean all

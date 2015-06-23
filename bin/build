@@ -14,15 +14,15 @@ else
     source ${script_dir}/../etc/build.conf
 fi
 
-if [[ $# < 2 ]]; then
-    echo "Usage: ${script_name} PROJECT VERSION [OS=${CONTAINER_OS?}]"
-    echo "Example: ${script_name} kelly 1.2.3"
+if [[ $# < 3 ]]; then
+    echo "Usage: ${script_name} PROJECT VERSION DIST"
+    echo "Example: ${script_name} kelly 1.2.3 centos6"
     exit 1
 fi
 
 project=${1}
 version=${2}
-container_os=${3-${CONTAINER_OS?}}
+dist=${3}
 
 tmp_dir=$(mktemp -d -p $(pwd))
 if [[ $? != 0 ]]; then
@@ -34,13 +34,17 @@ docker run -t -i --rm                       \
     -e "GITHUB_USER=${GITHUB_USER}"         \
     -e "GITHUB_PASSWORD=${GITHUB_PASSWORD}" \
     -v ${tmp_dir}:/tmp/                     \
-    ten0s/${container_os}_otp16.3-1_build-env build ${project} ${version}
+    ten0s/${dist}_otp16.3-1_build-env build ${project} ${version} ${dist}
 
 ret=$?
 if [[ ${ret} != 0 ]]; then
     echo "Build FAILED"
+    exit ${ret}
 else
     echo "Build SUCCEEDED: $(ls ${tmp_dir}/*)"
+    echo "Copying $(ls ${tmp_dir}/*.tar.gz) to rawshaun repo.."
+    rsync -azur --progress ${tmp_dir}/*.tar.gz root@10.10.0.15:/var/lib/sus/www/poweralley/
+    echo "Copied. Removing temp dir.." && rm -rfv ${tmp_dir}
+    echo "Finished, get outta there"
+    exit 0
 fi
-
-exit ${ret}

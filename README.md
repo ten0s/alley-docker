@@ -47,15 +47,15 @@ $ popd
 $ docker run -ti ten0s/centos6_otp16.3-1_build-env
 Available commands:
 
-Usage: build PROJECT VERSION [OS=centos6]
-Example: build kelly 1.2.3
+Usage: build PROJECT VERSION DIST
+Example: build kelly 1.2.3 centos6
 
 </pre>
 
 <pre>
 $ docker run -ti ten0s/centos6_otp16.3-1_build-env build
-Usage: build PROJECT VERSION [OS=centos6]
-Example: build kelly 1.2.3
+Usage: build PROJECT VERSION DIST
+Example: build kelly 1.2.3 centos6
 </pre>
 
 * Project building helper utility
@@ -69,14 +69,14 @@ $ cp bin/../etc/build.conf.template bin/../etc/build.conf
 
 <pre>
 $ bin/build
-Usage: build PROJECT VERSION [OS=centos6]
-Example: build kelly 1.2.3
+Usage: build PROJECT VERSION DIST
+Example: build kelly 1.2.3 centos6
 </pre>
 
 * Build [smppload](https://github.com/PowerMeMobile/smppload)
 
 <pre>
-$ bin/build smppload 2.0.0
+$ bin/build smppload 2.0.0 centos6
 ...
 Build SUCCEEDED: /home/ten0s/projects/docker/tmp.ubc7ILh8Aw/smppload-2.0.0-centos6.x86_64.tar.gz
 </pre>

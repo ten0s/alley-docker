@@ -1,0 +1,75 @@
+script:      '/opt/docker-ci/auto-build/bin/build'
+storage_url: 'http://sus.dev1team.net/sus/poweralley/'   
+logfile:     '/var/log/autobuild/{timestamp}_build_{project}_{dist}.log'
+send_from:   'autobuilder@docker.ci'
+projects:
+
+     email2sms:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     funnel_mini:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     just_mini:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     kelly:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     mm_srv:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     oneapi_srv:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     soap_srv:
+        dist: 
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     smppload:
+        dist: 
+           - centos5
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     smppsink:
+        dist: 
+           - centos5
+           - centos6
+        notify: 
+           - d.klionsky@dev1team.net
+
+     funnel-full:
+        dist:
+           - centos5
+           - centos6
+        notify:
+           - a.sizov@dev1team.net
+
+     just-full:
+        dist:
+           - centos5
+           - centos6
+        notify:
+           - a.sizov@dev1team.net
