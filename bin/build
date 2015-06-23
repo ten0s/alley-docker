@@ -14,16 +14,15 @@ else
     source ${script_dir}/../etc/build.conf
 fi
 
-if [[ $# < 2 ]]; then
-    echo "Usage: ${script_name} PROJECT VERSION DOCKER_IMG DIST"
-    echo "Example: ${script_name} kelly 1.2.3 ten0s/centos6_otp16.3-1_build-env centos6"
+if [[ $# < 3 ]]; then
+    echo "Usage: ${script_name} PROJECT VERSION DIST"
+    echo "Example: ${script_name} kelly 1.2.3 centos6"
     exit 1
 fi
 
 project=${1}
 version=${2}
-image=${3}
-dist=${4}
+dist=${3}
 
 tmp_dir=$(mktemp -d -p $(pwd))
 if [[ $? != 0 ]]; then
@@ -35,7 +34,7 @@ docker run -t -i --rm                       \
     -e "GITHUB_USER=${GITHUB_USER}"         \
     -e "GITHUB_PASSWORD=${GITHUB_PASSWORD}" \
     -v ${tmp_dir}:/tmp/                     \
-    ${image} build ${project} ${version} ${dist}
+    ten0s/${dist}_otp16.3-1_build-env build ${project} ${version} ${dist}
 
 ret=$?
 if [[ ${ret} != 0 ]]; then

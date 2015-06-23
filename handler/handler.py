@@ -34,7 +34,6 @@ def create_handler(d):
     common_cfg, proj_cfg = load_conf(proj_name)
 
     build_script  = common_cfg['script']
-    build_image   = common_cfg['image']
 
     send_from = common_cfg['send_from']
     send_to   = proj_cfg['notify']
@@ -44,7 +43,7 @@ def create_handler(d):
     for dist in proj_cfg['dist']:
 
         ts = time.strftime("%Y%m%d%H%M%S", time.localtime())
-        cmd = [build_script, proj_name, proj_vers, build_image.format(dist=dist), dist]
+        cmd = [build_script, proj_name, proj_vers, dist]
         flog = common_cfg['logfile'].format(timestamp=ts, project=proj_name, dist=dist)
 
         with open(flog, 'w') as build_out:

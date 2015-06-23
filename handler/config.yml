@@ -1,8 +1,7 @@
 script:      '/opt/docker-ci/auto-build/bin/build'
-image:       'docker_ci/{dist}_otp16.3-1_build-env'
 storage_url: 'http://sus.dev1team.net/sus/poweralley/'   
-send_from:   'autobuilder@docker.ci'
 logfile:     '/var/log/autobuild/{timestamp}_build_{project}_{dist}.log'
+send_from:   'autobuilder@docker.ci'
 projects:
 
      email2sms:

@@ -10,8 +10,8 @@ installed.
 
 <pre>
 $ sudo pip install -U virtualenv
-$ virtualenv -p python3 --no-site-packages /tmp/v-env/
-$ source /opt/v-env/bin/activate
+$ virtualenv -p python3 --no-site-packages ~/v-env/
+$ source ~/v-env/bin/activate
 </pre>
 
 
