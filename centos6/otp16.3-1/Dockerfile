@@ -12,15 +12,16 @@ ENV CONTAINER_OS centos6
 ENV ERLANG_VERSION R16B03-1
 
 RUN yum -y update
-RUN yum -y install    \
-        autoconf      \
-        gcc           \
-        gcc-c++       \
-        glibc-devel   \
-        make          \
-        ncurses-devel \
-        openssl-devel \
-        tar
+RUN yum -y install     \
+        autoconf       \
+        gcc            \
+        gcc-c++        \
+        glibc-devel    \
+        make           \
+        ncurses-devel  \
+        openssl-devel  \
+        tar            \
+        unixODBC-devel
 RUN yum clean all
 
 WORKDIR /tmp/
@@ -30,7 +31,6 @@ WORKDIR /tmp/otp_src_${ERLANG_VERSION}/
 RUN ./configure --prefix=/opt/${ERLANG_VERSION} \
                 --without-wx           \
                 --without-javac        \
-                --without-odbc         \
                 CFLAGS="-DOPENSSL_NO_EC=1 -g -O2"
 RUN make
 RUN make install
