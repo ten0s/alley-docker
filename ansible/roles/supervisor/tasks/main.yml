@@ -1,0 +1,25 @@
+---
+
+- name: Install python-setuptools
+  yum: name=python-setuptools state=present
+
+- name: Install supervisor
+  easy_install: name=supervisor
+
+- name: Create conf dir
+  file: dest=/etc/supervisor.d state=directory
+
+- name: Copy configs
+  copy: src={{ item.src }} dest={{ item.dest }} mode={{ item.mode }}
+  with_items:
+  - {src: supervisord.conf, dest: /etc/supervisord.conf, mode: 644}
+  - {src: github-handler.conf, dest: /etc/supervisor.d/github-handler.conf, mode: 644}
+  notify: Restart Supervisor
+
+- name: Copy init script
+  copy: src=supervisord dest=/etc/init.d/supervisord mode=0755
+
+- name: Enable and start supervisord
+  service: name=supervisord enabled=yes state=started
+
+

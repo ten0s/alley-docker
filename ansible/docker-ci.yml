@@ -1,0 +1,9 @@
+---
+
+- name:
+  hosts: docker-ci
+  roles:
+  - github-handler
+  - supervisor
+
+
