@@ -1,0 +1,2 @@
+[docker-ci]
+10.10.0.26 ansible_ssh_user=root
