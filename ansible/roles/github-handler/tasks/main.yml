@@ -2,8 +2,3 @@
 
 - name: Create programm dir
   file: dest=/opt/py3-venv state=directory mode=0755
-
-- name: Copy start.sh
-  copy: src=start.sh dest=/opt/py3-venv/start.sh mode=0755
-
-
